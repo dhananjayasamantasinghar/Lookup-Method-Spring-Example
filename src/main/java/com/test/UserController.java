@@ -7,21 +7,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public abstract class UserController {
-    
-    private static int count;
 
     @Lookup
-    public abstract UserService getSrvService();
-    
+    public abstract UserService getService();
+
     @GetMapping("/get")
-    public ResponseEntity<User> getMessage() throws Exception{
-        count++;
+    public ResponseEntity<User> getMessage() throws Exception {
         User user = new User();
         user.setMob("9040010798");
         user.setUserAddress("Bangalore");
-        user.setUserName(getSrvService().getMessage("Dhananjaya-"+count));
+        user.setUserName(getService().getMessage());
         return ResponseEntity.ok(user);
     }
-  
-    
+
 }
